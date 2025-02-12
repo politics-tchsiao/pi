@@ -134,7 +134,7 @@
                     <td class="grade">0</td>
                 </tr>
     </table>
-    <button id="exportBtn">Export this table sheet</button>
+    <button id="exportBtn">Export student's grade</button>
     </main>
     <footer>
     <p>&copy; Politics Ideology;</p>
@@ -159,26 +159,26 @@
         if (totalScore >= 59.5) return 'C-';
         return 'F';
     }
-    function calculateTotal() {
-        const table = document.getElementById('gradesTable');
-        const rows = table.getElementsByTagName('tr');
-        for (let i = 1; i < rows.length; i++) {
-            const paperElem = rows[i].querySelector('.paper');
-            let paper = Math.min(parseFloat(paperElem.textContent) || 0, 100);
-            paperElem.textContent = paper;
-            const presentElem = rows[i].querySelector('.present');
-            let present = Math.min(parseFloat(presentElem.textContent) || 0, 100);
-            presentElem.textContent = present;
-            let totalScore = paper * weights.paper + present * weights.present;
-            if (totalScore > 100) totalScore = 100; // Not exceed 100.
-            const avgCell = rows[i].querySelector('.avg');
-            avgCell.textContent = Math.round(totalScore);
-            const gradeCell = rows[i].querySelector('.grade');
-            const grade = getGrade(totalScore, paper, present);
-            gradeCell.textContent = grade;
-        }
+function calculateTotal() {
+    const table = document.getElementById('gradesTable');
+    const rows = table.getElementsByTagName('tr');
+    for (let i = 1; i < rows.length; i++) { 
+        const paperElem = rows[i].querySelector('.paper');
+        let paper = parseFloat(paperElem.textContent); 
+        paperElem.textContent = paper;
+        const presentElem = rows[i].querySelector('.final');
+        let present = parseFloat(presentElem.textContent); 
+        presentElem.textContent = present;
+        let totalScore = 0; 
+        totalScore = paper * weights.paper + present * weights.present;
+        if (totalScore > 100) totalScore = 100; 
+        const avgCell = rows[i].querySelector('.avg');
+        avgCell.textContent = Math.round(totalScore); 
+        const gradeCell = rows[i].querySelector('.grade');
+        const grade = getGrade(totalScore, paper, present);
+        gradeCell.textContent = grade;
     }
-    
+}
     function exportToExcel() {
         const table = document.getElementById('gradesTable');
         const wb = XLSX.utils.table_to_book(table, {sheet: "sheet"});
