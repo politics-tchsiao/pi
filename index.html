@@ -9,6 +9,11 @@
         font-family: "Times New Roman", "標楷體";
         background-color: transparent;
         line-height: 1.5;
+      background-image: url('background/back_PI.png');
+      background-size: cover;
+      background-position: top;
+      background-attachment: fixed;
+      color: white; 
     }
     a:visited {
         color: #D4C0CB;
@@ -39,13 +44,6 @@
         text-align: center;
         border: 0px;
     }
-    .background-image {
-      background-image: url('background/back_PI.png');
-      background-size: cover;
-      background-position: top;
-      background-attachment: fixed;
-      color: white; 
-    }
     li {
         line-height: 1.5;
     }
@@ -53,7 +51,6 @@
 <link rel="icon" type="image/x-icon" href="favPI.ico">
 </head>
 <body>
-<div class="background-image">
 <h1 style="text-align: center;">Political Ideology</h1>
 <br>
 <b>Announcement</b>
@@ -186,6 +183,5 @@ return `${day} ${month} ${year} ${hours}:${minutes}:${seconds} ${timezone}`;
 }
 document.write(formatLastModified());
 </script>.
-</div>
 </body>
 </html>
