@@ -20,7 +20,7 @@
         }
         h1 {
             text-align: center;
-            color: #333;
+            color: #000000;
             margin-bottom: 30px;
         }
         .container {
@@ -94,7 +94,7 @@
             margin-top: 20px;
         }
     </style>
-<link rel="icon" type="image/x-icon" href="favPS.ico">
+<link rel="icon" type="image/x-icon" href="favPI.ico">
 </head>
 <body>
     <div class="container">
@@ -107,7 +107,7 @@
             <label for="batchInput">Batch Add:</label>
             <input type="text" id="prefixInput" placeholder="Prefix (e.g., ID)" style="width: 23%; margin-right: 2%;">
             <input type="text" id="startNum" placeholder="Start (e.g., 001)" style="width: 18%; margin-right: 2%;">
-            <input type="text" id="endNum" placeholder="End (e.g., 101)" style="width: 18%; margin-right: 2%;">
+            <input type="text" id="endNum" placeholder="End (e.g., 002)" style="width: 18%; margin-right: 2%;">
             <input type="number" id="padLength" placeholder="Digits" style="width: 15%; margin-right: 2%;">
             <input type="number" id="drawCount" placeholder="Draw Count" style="width: 18%;">
         </div>
@@ -128,7 +128,7 @@
             <button onclick="drawLottery()" id="drawButton" disabled>Draw Lots</button>
         </div>
         <div class="result" id="result">
-            Waiting for draw lots result...
+            Waiting for draw lots result
         </div>
     </div>
     <script>
@@ -152,8 +152,8 @@
                 alert('Start number cannot be greater than end number.');
                 return;
             }
-            if ((endNum - startNum + 1) > 200) {
-                alert('Maximum 200 items can be added at once.');
+            if ((endNum - startNum + 1) > 1000) {
+                alert('Maximum 1000 items can be added at once.');
                 return;
             }
             let targetPadLength;
@@ -203,7 +203,7 @@
             items = [];
             updateItemsList();
             updateDrawButton();
-            document.getElementById('result').textContent = 'Waiting for draw lots result...';
+            document.getElementById('result').textContent = 'Waiting for draw lots result';
         }
         function updateItemsList() {
             const listDiv = document.getElementById('itemsList');
@@ -225,12 +225,10 @@
                 alert('At least two items are required for drawing lots.');
                 return;
             }
-            
             if (drawCount > items.length) {
                 alert(`Draw count cannot exceed total items (${items.length}).`);
                 return;
             }
-            
             if (drawCount < 1) {
                 alert('Draw count must be at least 1.');
                 return;
